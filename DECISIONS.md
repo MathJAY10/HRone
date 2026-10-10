@@ -1,4 +1,4 @@
-# DECISIONS.md (about 150-200 words in total - plain language, your own words)
+# DECISIONS.md 
 
 1. **Indexes.**
    On `employees`, we created a unique index on `emp_code` to enforce business identity, and `(department, joined_on)` for headcount filtering. On `attendance_logs`, we created a unique compound index on `(emp_code, date)` to guarantee one record per employee per day and eliminate punch-in races. We added `(date, emp_code)` for fast listing, `(date, late_minutes)` for leaderboard filtering, and `(emp_code, punch_in)` for punch-out lookups. We rejected indexing `department` on attendance logs because departments live on employees and can change over time.
